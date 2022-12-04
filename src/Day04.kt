@@ -27,9 +27,9 @@ fun main() {
                     .map { longs ->
                         LongRange(longs.first(), longs.last())
                     }
-            }.filter { longRanges ->
+            }.count { longRanges ->
                 longRanges.first().intersect(longRanges.last()).isNotEmpty()
-            }.count().toLong()
+            }.toLong()
     }
 
     // test if implementation meets criteria from the description, like:

@@ -3,12 +3,12 @@ fun main() {
         var max = 0L
         var current = 0L
         for (item in input) {
-            current = (item.toLongOrNull()?.plus(current) ?:  if (current > max) {
-                max = current
-                0L
-            }
-            else 0L
-            )
+            current = (
+                item.toLongOrNull()?.plus(current) ?: if (current > max) {
+                    max = current
+                    0L
+                } else 0L
+                )
         }
         return max
     }
@@ -21,8 +21,7 @@ fun main() {
             if (readItem == null) {
                 loads.add(current)
                 current = 0L
-            }
-            else {
+            } else {
                 current += readItem
             }
         }

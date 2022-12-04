@@ -1,9 +1,10 @@
 fun main() {
     fun part1(input: List<String>): Long {
         return input
-            .map { line -> line.take((line.length / 2)) to line.takeLast(line.length/2) }
+            .asSequence()
+            .map { line -> line.take((line.length / 2)) to line.takeLast(line.length / 2) }
             .map { line -> line.first.toSet().intersect(line.second.toSet()) }
-            .map { intesects -> intesects.toList() }
+            .map { intersects -> intersects.toList() }
             .flatten()
             .map { c: Char ->
                 if (c.isLowerCase()) c.code.toLong().minus(96)
@@ -14,6 +15,7 @@ fun main() {
 
     fun part2(input: List<String>): Long {
         return input
+            .asSequence()
             .map { it.toSet() }
             .windowed(size = 3, step = 3)
             .map { sets: List<Set<Char>> -> sets.reduce { acc, chars -> acc.intersect(chars) } }

@@ -80,24 +80,26 @@ fun main() {
         for (line in input) {
             val (opponent, player) = line.split(" ")
             val roundOpponentAction = opponentAction[opponent]
-            val roundplayerAction = playerAction[player]
-            val result = score(roundOpponentAction!!, roundplayerAction!!)
-            totalScore += resultScoring[result]!! + actionScoring[roundplayerAction]!!
+            val roundPlayerAction = playerAction[player]
+            val result = score(roundOpponentAction!!, roundPlayerAction!!)
+            totalScore += resultScoring[result]!! + actionScoring[roundPlayerAction]!!
         }
         return totalScore
     }
 
     fun findAction(roundOpponentAction: RockPaperScissor, result: Result): RockPaperScissor {
-        if (result == Result.DRAW) return roundOpponentAction
-        else if (result == Result.WIN) {
-            if (roundOpponentAction == RockPaperScissor.ROCK) return RockPaperScissor.PAPER
-            if (roundOpponentAction == RockPaperScissor.PAPER) return RockPaperScissor.SCISSOR
-            return RockPaperScissor.ROCK
-        }
-        else {
-            if (roundOpponentAction == RockPaperScissor.ROCK) return RockPaperScissor.SCISSOR
-            if (roundOpponentAction == RockPaperScissor.PAPER) return RockPaperScissor.ROCK
-            return RockPaperScissor.PAPER
+        when (result) {
+            Result.DRAW -> return roundOpponentAction
+            Result.WIN -> {
+                if (roundOpponentAction == RockPaperScissor.ROCK) return RockPaperScissor.PAPER
+                if (roundOpponentAction == RockPaperScissor.PAPER) return RockPaperScissor.SCISSOR
+                return RockPaperScissor.ROCK
+            }
+            Result.LOSS -> {
+                if (roundOpponentAction == RockPaperScissor.ROCK) return RockPaperScissor.SCISSOR
+                if (roundOpponentAction == RockPaperScissor.PAPER) return RockPaperScissor.ROCK
+                return RockPaperScissor.PAPER
+            }
         }
     }
 
