@@ -1,3 +1,7 @@
+import kotlin.time.DurationUnit
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTime
+
 enum class RockPaperScissor {
     ROCK, PAPER, SCISSOR
 }
@@ -6,6 +10,7 @@ enum class Result {
     WIN, DRAW, LOSS
 }
 
+@OptIn(ExperimentalTime::class)
 fun main() {
     val opponentAction = mapOf(
         "A" to RockPaperScissor.ROCK,
@@ -121,6 +126,6 @@ fun main() {
     check(part2(testInput) == 12L)
 
     val input = readInput("Day02")
-    println(part1(input))
-    println(part2(input))
+    println(measureTime { println(part1(input)) }.toString(DurationUnit.SECONDS, 3))
+    println(measureTime { println(part2(input)) }.toString(DurationUnit.SECONDS, 3))
 }

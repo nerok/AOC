@@ -1,3 +1,8 @@
+import kotlin.time.DurationUnit
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTime
+
+@OptIn(ExperimentalTime::class)
 fun main() {
     fun part1(input: List<String>): Long {
         return input
@@ -33,6 +38,6 @@ fun main() {
     check(part2(testInput) == 70L)
 
     val input = readInput("Day03")
-    println(part1(input))
-    println(part2(input))
+    println(measureTime { println(part1(input)) }.toString(DurationUnit.SECONDS, 3))
+    println(measureTime { println(part2(input)) }.toString(DurationUnit.SECONDS, 3))
 }
