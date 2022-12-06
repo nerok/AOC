@@ -1,4 +1,3 @@
-import java.util.*
 import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
@@ -14,8 +13,9 @@ fun main() {
         var containerArray = Array(parsedMap.last().size) { emptyList<String>().toMutableList() }
         for (line in parsedMap) {
             if (line == parsedMap.last()) continue
-            line.onEachIndexed { index, s -> if (s.isNotEmpty()) containerArray[index] =
-                listOf(s).plus(containerArray[index]).toMutableList()
+            line.onEachIndexed { index, s ->
+                if (s.isNotEmpty()) containerArray[index] =
+                    listOf(s).plus(containerArray[index]).toMutableList()
             }
         }
 
@@ -48,8 +48,9 @@ fun main() {
         var containerArray = Array(parsedMap.last().size) { emptyList<String>().toMutableList() }
         for (line in parsedMap) {
             if (line == parsedMap.last()) continue
-            line.onEachIndexed { index, s -> if (s.isNotEmpty()) containerArray[index] =
-                listOf(s).plus(containerArray[index]).toMutableList()
+            line.onEachIndexed { index, s ->
+                if (s.isNotEmpty()) containerArray[index] =
+                    listOf(s).plus(containerArray[index]).toMutableList()
             }
         }
 
@@ -77,7 +78,6 @@ fun main() {
 
     // test if implementation meets criteria from the description, like:
     val testInput = getInput("Day05_test")
-    println(part1(testInput))
     check(part1(testInput) == "CMZ")
     check(part2(testInput) == "MCD")
 
