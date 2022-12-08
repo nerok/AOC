@@ -1,11 +1,11 @@
-import kotlin.reflect.typeOf
+
 import kotlin.time.DurationUnit
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
 @OptIn(ExperimentalTime::class)
 fun main() {
-    fun treeWriter(tree: MutableMap<String,Any>, key: String, values: MutableMap<String, Any>, separator: Char = '/'): MutableMap<String, Any> {
+    fun treeWriter(tree: MutableMap<String, Any>, key: String, values: MutableMap<String, Any>, separator: Char = '/'): MutableMap<String, Any> {
         if (key == "/") return values
         val keyList = key.split(separator).filter { it.isNotEmpty() }
         var currentSubTree = tree
@@ -49,12 +49,11 @@ fun main() {
                 } else {
                     val output = command.drop(1)
                     var values = emptyMap<String, Any>().toMutableMap()
-                    output.forEach {item ->
+                    output.forEach { item ->
                         val (first, last) = item.split(" ")
                         if (first == "dir") {
-                            values[last] = emptyMap<String,Any>().toMutableMap()
-                        }
-                        else {
+                            values[last] = emptyMap<String, Any>().toMutableMap()
+                        } else {
                             values[last] = first
                         }
                     }
@@ -102,12 +101,11 @@ fun main() {
                 } else {
                     val output = command.drop(1)
                     var values = emptyMap<String, Any>().toMutableMap()
-                    output.forEach {item ->
+                    output.forEach { item ->
                         val (first, last) = item.split(" ")
                         if (first == "dir") {
-                            values[last] = emptyMap<String,Any>().toMutableMap()
-                        }
-                        else {
+                            values[last] = emptyMap<String, Any>().toMutableMap()
+                        } else {
                             values[last] = first
                         }
                     }
@@ -116,10 +114,10 @@ fun main() {
             }
         val sizedTree = calculateSize(dirTree)
 
-        val freeSpace = totalSpace.minus(sizedTree["_sum"] as Long).also { println("Free space: $it") }
-        val minimumSpaceToDelete = requiredFree.minus(freeSpace).also { println("Minimum to delete: $it") }
+        val freeSpace = totalSpace.minus(sizedTree["_sum"] as Long)
+        val minimumSpaceToDelete = requiredFree.minus(freeSpace)
 
-        return filterSubtreesBySize(sizedTree, minimumSpaceToDelete, false).map { it["_sum"] as Long }.min().also { println(it) }
+        return filterSubtreesBySize(sizedTree, minimumSpaceToDelete, false).map { it["_sum"] as Long }.min()
     }
 
     // test if implementation meets criteria from the description, like:
@@ -157,4 +155,3 @@ private fun calculateSize(tree: MutableMap<String, Any>): MutableMap<String, Any
     tree["_sum"] = sum
     return tree
 }
-
