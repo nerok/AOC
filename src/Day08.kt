@@ -51,12 +51,6 @@ fun main() {
     println(measureTime { println(part2(input)) }.toString(DurationUnit.SECONDS, 3))
 }
 
-data class Point<T>(var content: T, val row: Int, val column: Int) {
-    override fun toString(): String {
-        return content.toString()
-    }
-}
-
 class Grid(var rows: MutableList<MutableList<Point<Int>>> = emptyList<MutableList<Point<Int>>>().toMutableList()) {
     fun findVisible(): Grid {
         return Direction
@@ -209,8 +203,4 @@ class Grid(var rows: MutableList<MutableList<Point<Int>>> = emptyList<MutableLis
     }
 
     fun max(): Int = this.rows.maxOf { col -> col.maxOf { it.content } }
-}
-
-enum class Direction {
-    NORTH, EAST, SOUTH, WEST
 }
