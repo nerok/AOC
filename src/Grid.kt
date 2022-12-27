@@ -1,6 +1,17 @@
+import kotlin.math.pow
+import kotlin.math.sqrt
+
 data class Point<T>(var content: T, val row: Int, val column: Int) {
     override fun toString(): String {
         return content.toString()
+    }
+
+    fun toDetailedString(): String {
+        return "Point($row, $column) = $content"
+    }
+
+    fun findDistance(point: Point<T>): Double {
+        return sqrt((this.row - point.row).toDouble().pow(2) + (this.column - point.column).toDouble().pow(2))
     }
 }
 
@@ -86,6 +97,19 @@ open class GenericGrid<T : Any>(var rows: MutableList<MutableList<Point<T>>> = e
 
     override fun toString(): String {
         return rows.joinToString("\n") { points -> points.joinToString("\t") { it.toString() } }
+    }
+
+    fun orthogonalNeighbours(currentPoint: Point<T>): Set<Point<T>> {
+        val neighbours = mutableSetOf<Point<T>>()
+        // North
+        if (currentPoint.row > 0) neighbours.add(this[currentPoint.row-1, currentPoint.column])
+        // South
+        if (currentPoint.row < this.height - 1) neighbours.add(this[currentPoint.row+1, currentPoint.column])
+        // East
+        if (currentPoint.column < this.width - 1) neighbours.add(this[currentPoint.row, currentPoint.column+1])
+        // West
+        if (currentPoint.column > 0) neighbours.add(this[currentPoint.row, currentPoint.column-1])
+        return neighbours
     }
 }
 

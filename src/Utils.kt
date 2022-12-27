@@ -26,3 +26,9 @@ fun <T> MutableList<T>.prepend(element: T) {
 fun <T> MutableList<T>.append(element: T) {
     add(element)
 }
+
+fun <T> MutableCollection<T>.removeFirst()
+        = first().also{ remove(it) }
+
+fun <T> MutableCollection<T>.removeFirstOrNull()
+        = firstOrNull().also{ remove(it) }
