@@ -22,10 +22,10 @@ open class GenericGrid<T : Any>(var rows: MutableList<MutableList<Point<T>>> = e
     private var zeroRow = 0
     private var zeroColumn = 0
 
-    val width: Int by lazy {
+    private val width: Int by lazy {
         rows.firstOrNull()?.size ?: 0
     }
-    val height: Int by lazy {
+    private val height: Int by lazy {
         rows.size
     }
     val shape: Pair<Int, Int> by lazy {

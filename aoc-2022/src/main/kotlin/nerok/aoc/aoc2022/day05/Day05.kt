@@ -6,12 +6,12 @@ import kotlin.time.measureTime
 
 fun main() {
     fun part1(input: String): String {
-        var (mapInput, instructionInput) = input.split("\n\n")
+        val (mapInput, instructionInput) = input.split("\n\n")
         val parsedMap = mapInput
             .lines()
             .map { lines -> lines.chunked(4).map { point -> point.trim() } }
 
-        var containerArray = Array(parsedMap.last().size) { emptyList<String>().toMutableList() }
+        val containerArray = Array(parsedMap.last().size) { emptyList<String>().toMutableList() }
         for (line in parsedMap) {
             if (line == parsedMap.last()) continue
             line.onEachIndexed { index, s ->
@@ -41,12 +41,12 @@ fun main() {
     }
 
     fun part2(input: String): String {
-        var (mapInput, instructionInput) = input.split("\n\n")
+        val (mapInput, instructionInput) = input.split("\n\n")
         val parsedMap = mapInput
             .lines()
             .map { lines -> lines.chunked(4).map { point -> point.trim() } }
 
-        var containerArray = Array(parsedMap.last().size) { emptyList<String>().toMutableList() }
+        val containerArray = Array(parsedMap.last().size) { emptyList<String>().toMutableList() }
         for (line in parsedMap) {
             if (line == parsedMap.last()) continue
             line.onEachIndexed { index, s ->
@@ -64,7 +64,7 @@ fun main() {
                 val tmpSplit = line.last().split(" to ")
                 val source = tmpSplit.first().toInt().minus(1)
                 val destination = tmpSplit.last().toInt().minus(1)
-                var tmp = emptyList<String>().toMutableList()
+                val tmp = emptyList<String>().toMutableList()
                 for (round in 1..count) {
                     tmp.add(containerArray[source].removeLast())
                 }

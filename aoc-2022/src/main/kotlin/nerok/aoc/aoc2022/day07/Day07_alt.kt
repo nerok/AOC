@@ -60,7 +60,7 @@ class Directory(
 class Files(
     name: String,
     parent: Directory,
-    var size: Long
+    private var size: Long
 ) : FSNode(name, parent) {
     override fun size() = size
 }

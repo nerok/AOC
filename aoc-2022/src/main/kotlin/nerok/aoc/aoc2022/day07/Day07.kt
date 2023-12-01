@@ -1,4 +1,5 @@
 package nerok.aoc.aoc2022.day07
+
 import nerok.aoc.utils.Input
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
@@ -47,7 +48,7 @@ fun main() {
                     }
                 } else {
                     val output = command.drop(1)
-                    var values = emptyMap<String, Any>().toMutableMap()
+                    val values = emptyMap<String, Any>().toMutableMap()
                     output.forEach { item ->
                         val (first, last) = item.split(" ")
                         if (first == "dir") {
@@ -99,7 +100,7 @@ fun main() {
                     }
                 } else {
                     val output = command.drop(1)
-                    var values = emptyMap<String, Any>().toMutableMap()
+                    val values = emptyMap<String, Any>().toMutableMap()
                     output.forEach { item ->
                         val (first, last) = item.split(" ")
                         if (first == "dir") {
@@ -116,7 +117,7 @@ fun main() {
         val freeSpace = totalSpace.minus(sizedTree["_sum"] as Long)
         val minimumSpaceToDelete = requiredFree.minus(freeSpace)
 
-        return filterSubtreesBySize(sizedTree, minimumSpaceToDelete, false).map { it["_sum"] as Long }.min()
+        return filterSubtreesBySize(sizedTree, minimumSpaceToDelete, false).minOf { it["_sum"] as Long }
     }
 
     // test if implementation meets criteria from the description, like:

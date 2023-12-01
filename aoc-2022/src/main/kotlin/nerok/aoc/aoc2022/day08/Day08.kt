@@ -56,8 +56,7 @@ fun main() {
 
 class Grid(var rows: MutableList<MutableList<Point<Int>>> = emptyList<MutableList<Point<Int>>>().toMutableList()) {
     fun findVisible(): Grid {
-        return Direction
-            .values()
+        return Direction.entries
             .map { direction -> this.skyline(direction) }
             .reduce { acc, grid -> acc.merge(grid) }
     }
@@ -73,7 +72,7 @@ class Grid(var rows: MutableList<MutableList<Point<Int>>> = emptyList<MutableLis
         return this
     }
 
-    fun skyline(direction: Direction): Grid {
+    private fun skyline(direction: Direction): Grid {
         val tmpGrid = when (direction) {
             Direction.NORTH -> {
                 this.copy()
@@ -118,7 +117,7 @@ class Grid(var rows: MutableList<MutableList<Point<Int>>> = emptyList<MutableLis
         }
     }
 
-    fun copy(): Grid {
+    private fun copy(): Grid {
         return Grid(
             rows = rows
                 .map { cols ->
@@ -130,13 +129,13 @@ class Grid(var rows: MutableList<MutableList<Point<Int>>> = emptyList<MutableLis
         )
     }
 
-    fun rowReversed(): Grid {
+    private fun rowReversed(): Grid {
         val rowReversed = this.copy()
         rowReversed.rows.reverse()
         return rowReversed
     }
 
-    fun transpose(): Grid {
+    private fun transpose(): Grid {
         val transposed = this.copy()
         this.rows.forEachIndexed { rowIndex, cols ->
             cols.forEachIndexed { colsIndex, point ->

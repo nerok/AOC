@@ -60,7 +60,7 @@ fun main() {
             val monkeyItems = monkey.items
             monkey.items = emptyList<ULong>().toMutableList()
             monkeyItems.forEach { item ->
-                var newScore = operateOnItem(item, monkey.operation) % modulo
+                val newScore = operateOnItem(item, monkey.operation) % modulo
                 // newScore = if (round % 2L == 0L) newScore  else newScore
                 if (newScore % monkey.test.toULong() == 0uL) {
                     monkeys[monkey.trueDest].items.add(newScore)

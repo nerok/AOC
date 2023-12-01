@@ -9,36 +9,36 @@ import kotlin.time.measureTime
 fun main() {
 
     fun part1(input: List<String>): Long {
-        var H = GeoPoint(0, 0)
-        var T = GeoPoint(0, 0)
+        val H = GeoPoint(0, 0)
+        val T = GeoPoint(0, 0)
         val visited = emptySet<GeoPoint>().toMutableSet()
 
         input.forEach { line ->
             val (direction, distance) = line.split(' ', limit = 2)
             // println("Direction: $direction, distance: $distance")
             when (direction) {
-                "R" -> (1L..distance.toLong()).forEach {
+                "R" -> (1L..distance.toLong()).forEach { _ ->
                     H.moveRight()
                     if (!T.isAdjacent(H)) {
                         T.moveTowards(H)
                     }
                     visited.add(T.copy())
                 }
-                "U" -> (1L..distance.toLong()).forEach {
+                "U" -> (1L..distance.toLong()).forEach { _ ->
                     H.moveUp()
                     if (!T.isAdjacent(H)) {
                         T.moveTowards(H)
                     }
                     visited.add(T.copy())
                 }
-                "L" -> (1L..distance.toLong()).forEach {
+                "L" -> (1L..distance.toLong()).forEach { _ ->
                     H.moveLeft()
                     if (!T.isAdjacent(H)) {
                         T.moveTowards(H)
                     }
                     visited.add(T.copy())
                 }
-                "D" -> (1L..distance.toLong()).forEach {
+                "D" -> (1L..distance.toLong()).forEach { _ ->
                     H.moveDown()
                     if (!T.isAdjacent(H)) {
                         T.moveTowards(H)
@@ -53,13 +53,13 @@ fun main() {
     }
 
     fun part2(input: List<String>): Long {
-        var tail = Collections.nCopies(10, GeoPoint(0, 0)).map { it.copy() }.toMutableList()
+        val tail = Collections.nCopies(10, GeoPoint(0, 0)).map { it.copy() }.toMutableList()
         val visited = emptySet<GeoPoint>().toMutableSet()
 
         input.forEach { line ->
             val (direction, distance) = line.split(' ', limit = 2)
             when (direction) {
-                "R" -> (1L..distance.toLong()).forEach {
+                "R" -> (1L..distance.toLong()).forEach { _ ->
                     tail[0].moveRight()
                     tail.windowed(2).forEach { (tmpHead, tmpTail) ->
                         if (!tmpTail.isAdjacent(tmpHead)) {
@@ -68,7 +68,7 @@ fun main() {
                     }
                     visited.add(tail.last().copy())
                 }
-                "U" -> (1L..distance.toLong()).forEach {
+                "U" -> (1L..distance.toLong()).forEach { _ ->
                     tail.first().moveUp()
                     tail.windowed(2).forEach { (tmpHead, tmpTail) ->
                         if (!tmpTail.isAdjacent(tmpHead)) {
@@ -77,7 +77,7 @@ fun main() {
                     }
                     visited.add(tail.last().copy())
                 }
-                "L" -> (1L..distance.toLong()).forEach {
+                "L" -> (1L..distance.toLong()).forEach { _ ->
                     tail.first().moveLeft()
                     tail.windowed(2).forEach { (tmpHead, tmpTail) ->
                         if (!tmpTail.isAdjacent(tmpHead)) {
@@ -86,7 +86,7 @@ fun main() {
                     }
                     visited.add(tail.last().copy())
                 }
-                "D" -> (1L..distance.toLong()).forEach {
+                "D" -> (1L..distance.toLong()).forEach { _ ->
                     tail.first().moveDown()
                     tail.windowed(2).forEach { (tmpHead, tmpTail) ->
                         if (!tmpTail.isAdjacent(tmpHead)) {
@@ -114,10 +114,10 @@ fun main() {
 
 data class GeoPoint(var row: Int, var column: Int) {
 
-    fun distance(other: GeoPoint): Pair<Long, Long> {
+    private fun distance(other: GeoPoint): Pair<Long, Long> {
         return (this.row - other.row).toLong() to (this.column - other.column).toLong()
     }
-    fun normalDistance(other: GeoPoint): Long {
+    private fun normalDistance(other: GeoPoint): Long {
         return maxOf(abs(this.column - other.column), abs(this.row - other.row)).toLong()
     }
 

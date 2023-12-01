@@ -32,7 +32,7 @@ fun main() {
         heightMap[endPoint.row, endPoint.column].content = 'z' to 0
 
         var currentNode: Point<Pair<Char, Int>>? = endPoint
-        var toCheck = mutableSetOf<Point<Pair<Char, Int>>>()
+        val toCheck = mutableSetOf<Point<Pair<Char, Int>>>()
 
         while (currentNode != null) {
             heightMap
@@ -75,7 +75,7 @@ fun main() {
         heightMap[endPoint.row, endPoint.column].content = 'z' to 0
 
         var currentNode: Point<Pair<Char, Int>>? = endPoint
-        var toCheck = mutableSetOf<Point<Pair<Char, Int>>>()
+        val toCheck = mutableSetOf<Point<Pair<Char, Int>>>()
 
         while (currentNode != null) {
             heightMap
