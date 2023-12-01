@@ -1,9 +1,8 @@
-
+package nerok.aoc.aoc2022.day11
+import nerok.aoc.utils.Input
 import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
-@OptIn(ExperimentalTime::class)
 fun main() {
 
     fun operateOnItem(item: ULong, operation: String): ULong {
@@ -40,7 +39,7 @@ fun main() {
         var monkeys = input.split("\n\n").map { monkey ->
             val linedMonkey = monkey.lines()
             Monkey(
-                id = linedMonkey.first().removePrefix("Monkey ").removeSuffix(":").toULong(),
+                id = linedMonkey.first().removePrefix("nerok.aoc.aoc2022.day11.Monkey ").removeSuffix(":").toULong(),
                 items = linedMonkey[1].trim().removePrefix("Starting items: ").split(", ").map { it.toULong() }.toMutableList(),
                 operation = linedMonkey[2].trim().removePrefix("Operation: "),
                 test = linedMonkey[3].trim().removePrefix("Test: divisible by ").toInt(),
@@ -78,7 +77,7 @@ fun main() {
         var monkeys = input.split("\n\n").map { monkey ->
             val linedMonkey = monkey.lines()
             Monkey(
-                id = linedMonkey.first().removePrefix("Monkey ").removeSuffix(":").toULong(),
+                id = linedMonkey.first().removePrefix("nerok.aoc.aoc2022.day11.Monkey ").removeSuffix(":").toULong(),
                 items = linedMonkey[1].trim().removePrefix("Starting items: ").split(", ").map { it.toULong() }.toMutableList(),
                 operation = linedMonkey[2].trim().removePrefix("Operation: "),
                 test = linedMonkey[3].trim().removePrefix("Test: divisible by ").toInt(),
@@ -94,11 +93,11 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = getInput("Day11_test")
+    val testInput = Input.getInput("Day11_test")
     check(part1(testInput) == 10605uL)
     check(part2(testInput) == 2713310158uL)
 
-    val input = getInput("Day11")
+    val input = Input.getInput("Day11")
     println(measureTime { println(part1(input)) }.toString(DurationUnit.MICROSECONDS, 3))
     println(measureTime { println(part2(input)) }.toString(DurationUnit.MICROSECONDS, 3))
 }

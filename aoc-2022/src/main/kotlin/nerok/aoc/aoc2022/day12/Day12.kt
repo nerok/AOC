@@ -1,9 +1,11 @@
-
+package nerok.aoc.aoc2022.day12
+import nerok.aoc.utils.GenericGrid
+import nerok.aoc.utils.Input
+import nerok.aoc.utils.Point
+import nerok.aoc.utils.removeFirstOrNull
 import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
-@OptIn(ExperimentalTime::class)
 fun main() {
     fun part1(input: List<String>): Long {
         val heightMap = GenericGrid(defaultValue = '.' to -1)
@@ -99,11 +101,11 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day12_test")
+    val testInput = Input.readInput("Day12_test")
     check(part1(testInput) == 31L)
     check(part2(testInput) == 29L)
 
-    val input = readInput("Day12")
+    val input = Input.readInput("Day12")
     println(measureTime { println(part1(input)) }.toString(DurationUnit.MICROSECONDS, 3))
     println(measureTime { println(part2(input)) }.toString(DurationUnit.MICROSECONDS, 3))
 }

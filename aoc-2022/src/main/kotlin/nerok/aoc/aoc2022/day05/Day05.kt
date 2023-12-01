@@ -1,8 +1,9 @@
+package nerok.aoc.aoc2022.day05
+
+import nerok.aoc.utils.Input
 import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
-@OptIn(ExperimentalTime::class)
 fun main() {
     fun part1(input: String): String {
         var (mapInput, instructionInput) = input.split("\n\n")
@@ -77,11 +78,11 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = getInput("Day05_test")
+    val testInput = Input.getInput("Day05_test")
     check(part1(testInput) == "CMZ")
     check(part2(testInput) == "MCD")
 
-    val input = getInput("Day05")
+    val input = Input.getInput("Day05")
     println(measureTime { println(part1(input)) }.toString(DurationUnit.SECONDS, 3))
     println(measureTime { println(part2(input)) }.toString(DurationUnit.SECONDS, 3))
 }

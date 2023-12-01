@@ -1,8 +1,9 @@
+package nerok.aoc.aoc2022.day01
+
+import nerok.aoc.utils.Input
 import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
-@OptIn(ExperimentalTime::class)
 fun main() {
     fun part1(input: List<String>): Long {
         var max = 0L
@@ -37,11 +38,11 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
+    val testInput = Input.readInput("Day01_test")
     check(part1(testInput) == 24000L)
     check(part2(testInput) == 45000L)
 
-    val input = readInput("Day01")
+    val input = Input.readInput("Day01")
     println(measureTime { println(part1(input)) }.toString(DurationUnit.SECONDS, 3))
     println(measureTime { println(part2(input)) }.toString(DurationUnit.SECONDS, 3))
 }

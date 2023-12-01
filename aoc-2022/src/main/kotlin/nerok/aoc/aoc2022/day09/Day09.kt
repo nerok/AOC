@@ -1,10 +1,11 @@
+package nerok.aoc.aoc2022.day09
+
+import nerok.aoc.utils.Input
 import java.util.Collections
 import kotlin.math.abs
 import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
-@OptIn(ExperimentalTime::class)
 fun main() {
 
     fun part1(input: List<String>): Long {
@@ -102,11 +103,11 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day09_test")
+    val testInput = Input.readInput("Day09_test")
     check(part1(testInput) == 88L)
     check(part2(testInput) == 36L)
 
-    val input = readInput("Day09")
+    val input = Input.readInput("Day09")
     println(measureTime { println(part1(input)) }.toString(DurationUnit.SECONDS, 3))
     println(measureTime { println(part2(input)) }.toString(DurationUnit.SECONDS, 3))
 }

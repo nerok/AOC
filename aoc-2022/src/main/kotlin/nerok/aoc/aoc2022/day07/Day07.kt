@@ -1,9 +1,8 @@
-
+package nerok.aoc.aoc2022.day07
+import nerok.aoc.utils.Input
 import kotlin.time.DurationUnit
-import kotlin.time.ExperimentalTime
 import kotlin.time.measureTime
 
-@OptIn(ExperimentalTime::class)
 fun main() {
     fun treeWriter(tree: MutableMap<String, Any>, key: String, values: MutableMap<String, Any>, separator: Char = '/'): MutableMap<String, Any> {
         if (key == "/") return values
@@ -121,11 +120,11 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = getInput("Day07_test")
+    val testInput = Input.getInput("Day07_test")
     check(part1(testInput) == 95437L)
     check(part2(testInput) == 24933642L)
 
-    val input = getInput("Day07")
+    val input = Input.getInput("Day07")
     println(measureTime { println(part1(input)) }.toString(DurationUnit.SECONDS, 3))
     println(measureTime { println(part2(input)) }.toString(DurationUnit.SECONDS, 3))
 }

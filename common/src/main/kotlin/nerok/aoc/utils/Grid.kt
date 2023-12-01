@@ -1,3 +1,5 @@
+package nerok.aoc.utils
+
 import kotlin.math.pow
 import kotlin.math.sqrt
 
@@ -102,13 +104,13 @@ open class GenericGrid<T : Any>(var rows: MutableList<MutableList<Point<T>>> = e
     fun orthogonalNeighbours(currentPoint: Point<T>): Set<Point<T>> {
         val neighbours = mutableSetOf<Point<T>>()
         // North
-        if (currentPoint.row > 0) neighbours.add(this[currentPoint.row-1, currentPoint.column])
+        if (currentPoint.row > 0) neighbours.add(this[currentPoint.row - 1, currentPoint.column])
         // South
-        if (currentPoint.row < this.height - 1) neighbours.add(this[currentPoint.row+1, currentPoint.column])
+        if (currentPoint.row < this.height - 1) neighbours.add(this[currentPoint.row + 1, currentPoint.column])
         // East
-        if (currentPoint.column < this.width - 1) neighbours.add(this[currentPoint.row, currentPoint.column+1])
+        if (currentPoint.column < this.width - 1) neighbours.add(this[currentPoint.row, currentPoint.column + 1])
         // West
-        if (currentPoint.column > 0) neighbours.add(this[currentPoint.row, currentPoint.column-1])
+        if (currentPoint.column > 0) neighbours.add(this[currentPoint.row, currentPoint.column - 1])
         return neighbours
     }
 }

@@ -1,20 +1,20 @@
 plugins {
-    kotlin("jvm") version "1.7.22"
-    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
+    kotlin("jvm") version "1.9.21"
+    id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
+    application
 }
+
+group = "nerok.aoc"
+version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
 }
 
-tasks {
-    sourceSets {
-        main {
-            java.srcDirs("src")
-        }
-    }
+allprojects {
+    group = "nerok.aoc"
 
-    wrapper {
-        gradleVersion = "7.6"
+    tasks.withType<Test> {
+        useJUnitPlatform()
     }
 }
