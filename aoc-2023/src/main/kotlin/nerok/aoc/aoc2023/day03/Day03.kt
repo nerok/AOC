@@ -1,35 +1,24 @@
-package nerok.aoc.aoc2023.day02
+package nerok.aoc.aoc2023.day03
 
-import nerok.aoc.utils.GenericGrid
 import nerok.aoc.utils.Input
 import nerok.aoc.utils.Point
 import nerok.aoc.utils.append
+import nerok.aoc.utils.createCharGrid
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 
 fun main() {
     fun part1(input: List<String>): Long {
-        val engineSchematic = GenericGrid(defaultValue = '.')
-
-        input
-            .filter { it.isNotEmpty() }
-            .forEachIndexed { rowIndex, line ->
-                engineSchematic.rows.add(
-                    line.mapIndexed { colIndex, s ->
-                        val point = Point(s, rowIndex, colIndex)
-                        point
-                    }.toMutableList()
-                )
-            }
+        val engineSchematic = createCharGrid(input)
         val validPartNumbers = emptyList<Long>().toMutableList()
         var currentPartNumber = ""
         var currentPartNumberValid = false
-        engineSchematic.rows.forEachIndexed { rowIndex, row ->
-            row.forEachIndexed { columnIndex, point ->
+        engineSchematic.rows.forEach { row ->
+            row.forEach { point ->
                 if (point.content.isDigit()) {
                     currentPartNumber = "$currentPartNumber${point.content}"
                     engineSchematic.neighbours(point).forEach { neighbour ->
-                        if ((!neighbour.content.isDigit()) and (!neighbour.content.equals('.'))) {
+                        if ((!neighbour.content.isDigit()) and (neighbour.content != '.')) {
                             currentPartNumberValid = true
                         }
                     }
@@ -46,18 +35,7 @@ fun main() {
     }
 
     fun part2(input: List<String>): Long {
-        val engineSchematic = GenericGrid(defaultValue = '.')
-
-        input
-            .filter { it.isNotEmpty() }
-            .forEachIndexed { rowIndex, line ->
-                engineSchematic.rows.add(
-                    line.mapIndexed { colIndex, s ->
-                        val point = Point(s, rowIndex, colIndex)
-                        point
-                    }.toMutableList()
-                )
-            }
+        val engineSchematic = createCharGrid(input)
         val validPartNumbers = emptyList<Pair<Point<Char>,Long>>().toMutableList()
         var currentPartNumber = ""
         var currentPartNumberSymbol: Point<Char>? = null

@@ -113,6 +113,7 @@ open class GenericGrid<T : Any>(var rows: MutableList<MutableList<Point<T>>> = e
         if (currentPoint.column > 0) neighbours.add(this[currentPoint.row, currentPoint.column - 1])
         return neighbours
     }
+
     fun diagonalNeighbours(currentPoint: Point<T>): Set<Point<T>> {
         val neighbours = mutableSetOf<Point<T>>()
         // North West
@@ -133,4 +134,20 @@ open class GenericGrid<T : Any>(var rows: MutableList<MutableList<Point<T>>> = e
 
 enum class Direction {
     NORTH, EAST, SOUTH, WEST
+}
+
+fun createCharGrid(input: List<String>, defaultValue: Char = '.'): GenericGrid<Char> {
+    val charGrid = GenericGrid(defaultValue = defaultValue)
+
+    input
+        .filter { it.isNotEmpty() }
+        .forEachIndexed { rowIndex, line ->
+            charGrid.rows.add(
+                line.mapIndexed { colIndex, s ->
+                    val point = Point(s, rowIndex, colIndex)
+                    point
+                }.toMutableList()
+            )
+        }
+    return charGrid
 }
