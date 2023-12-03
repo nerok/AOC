@@ -113,6 +113,22 @@ open class GenericGrid<T : Any>(var rows: MutableList<MutableList<Point<T>>> = e
         if (currentPoint.column > 0) neighbours.add(this[currentPoint.row, currentPoint.column - 1])
         return neighbours
     }
+    fun diagonalNeighbours(currentPoint: Point<T>): Set<Point<T>> {
+        val neighbours = mutableSetOf<Point<T>>()
+        // North West
+        if ((currentPoint.row > 0) and (currentPoint.column > 0)) neighbours.add(this[currentPoint.row - 1, currentPoint.column - 1])
+        // South West
+        if ((currentPoint.row < this.height - 1) and (currentPoint.column > 0)) neighbours.add(this[currentPoint.row + 1, currentPoint.column - 1])
+        // North East
+        if ((currentPoint.row > 0) and (currentPoint.column < this.width - 1)) neighbours.add(this[currentPoint.row - 1, currentPoint.column + 1])
+        // South West
+        if ((currentPoint.row < this.height - 1) and (currentPoint.column < this.width - 1)) neighbours.add(this[currentPoint.row + 1, currentPoint.column + 1])
+        return neighbours
+    }
+
+    fun neighbours(currentPoint: Point<T>): Set<Point<T>> {
+        return orthogonalNeighbours(currentPoint).union(diagonalNeighbours(currentPoint))
+    }
 }
 
 enum class Direction {
