@@ -1,9 +1,6 @@
-package nerok.aoc.aoc2023.day02
+package nerok.aoc.aoc2023.day06
 
-import nerok.aoc.utils.GenericGrid
 import nerok.aoc.utils.Input
-import nerok.aoc.utils.Point
-import nerok.aoc.utils.append
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 
