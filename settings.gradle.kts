@@ -12,5 +12,6 @@ plugins {
 rootProject.name = "advent-of-code"
 
 include("common")
+include("aoc-2021")
 include("aoc-2022")
 include("aoc-2023")
