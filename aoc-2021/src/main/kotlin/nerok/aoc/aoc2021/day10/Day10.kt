@@ -5,21 +5,86 @@ import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 
 fun main() {
-    fun part1(input: List<String>): Long =
-        input.map { Integer.parseInt(it) }.windowed(2) {
-            it.first() < it.last()
-        }.count { it }.toLong()
+    fun part1(input: List<String>): Long {
+        var score = 0
+        input.forEach{ line ->
+            val stack = ArrayDeque<String>()
+            var mismatchedBracket = ""
+            line.split("").forEach { char ->
+                if (mismatchedBracket != "") return@forEach
+                when (char) {
+                    "(" -> stack.add(char)
+                    "[" -> stack.add(char)
+                    "{" -> stack.add(char)
+                    "<" -> stack.add(char)
+                    ")" -> if (stack.last() == "(") stack.removeLast() else {
+                        mismatchedBracket = char
+                    }
+                    "]" -> if (stack.last() == "[") stack.removeLast() else {
+                        mismatchedBracket = char
+                    }
+                    "}" -> if (stack.last() == "{") stack.removeLast() else {
+                        mismatchedBracket = char
+                    }
+                    ">" -> if (stack.last() == "<") stack.removeLast() else {
+                        mismatchedBracket = char
+                    }
+                }
+            }
+            if (mismatchedBracket != "") {
+                when (mismatchedBracket) {
+                    ")" -> score += 3
+                    "]" -> score += 57
+                    "}" -> score += 1197
+                    ">" -> score += 25137
+                }
+            }
+        }
+        return score.toLong()
+    }
 
-    fun part2(input: List<String>): Long = input.map { Integer.parseInt(it) }.windowed(3) {
-        it.sum()
-    }.windowed(2){
-        it.first() < it.last()
-    }.count { it }.toLong()
+    fun part2(input: List<String>): Long {
+        val scores = input.map { line ->
+            var score = 0L
+            val stack = ArrayDeque<String>()
+            line.split("").forEach { char ->
+                when (char) {
+                    "(" -> stack.add(char)
+                    "[" -> stack.add(char)
+                    "{" -> stack.add(char)
+                    "<" -> stack.add(char)
+                    ")" -> if (stack.last() == "(") stack.removeLast() else {
+                        return@map null
+                    }
+                    "]" -> if (stack.last() == "[") stack.removeLast() else {
+                        return@map null
+                    }
+                    "}" -> if (stack.last() == "{") stack.removeLast() else {
+                        return@map null
+                    }
+                    ">" -> if (stack.last() == "<") stack.removeLast() else {
+                        return@map null
+                    }
+                }
+            }
+            while (stack.isNotEmpty()) {
+                score *= 5
+                when (stack.removeLast()) {
+                    "(" -> score += 1
+                    "[" -> score += 2
+                    "{" -> score += 3
+                    "<" -> score += 4
+                }
+            }
+            score
+        }.filterNotNull().sorted()
+        return scores[scores.size/2]
+    }
 
     // test if implementation meets criteria from the description, like:
     val testInput = Input.readInput("Day10_test")
-    check(part1(testInput) == 7L)
-    check(part2(testInput) == 5L)
+    check(part1(testInput) == 26397L)
+    check(part2(testInput) == 288957L)
 
     val input = Input.readInput("Day10")
     println(measureTime { println(part1(input)) }.toString(DurationUnit.SECONDS, 3))
