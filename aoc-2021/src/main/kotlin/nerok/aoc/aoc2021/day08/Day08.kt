@@ -65,10 +65,10 @@ fun main() {
 
     fun part2(input: List<String>): Long = input.map { line ->
             line.split(" | ").map { it.split(" ") }.let { it.first().map { it.toSortedSet() } to it.last().map { it.toSortedSet() } }
-        }.map {
+        }.sumOf {
             val map = predictPairs(it.first)
-            Integer.parseInt(it.second.map { map[it] }.let { it.joinToString("") })
-        }.sum().toLong()
+            Integer.parseInt(it.second.map { map[it] }.joinToString(""))
+        }.toLong()
 
     // test if implementation meets criteria from the description, like:
     val testInput = Input.readInput("Day08_test")

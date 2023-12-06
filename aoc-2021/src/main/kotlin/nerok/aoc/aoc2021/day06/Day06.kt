@@ -17,7 +17,7 @@ fun main() {
     }
 
     fun part2(input: String): Long {
-        var fish = input.split(",").map { it.toInt() }
+        val fish = input.split(",").map { it.toInt() }
         var fishCount = fish.groupBy { it }.map { it.key.toLong() to it.value.count().toULong() }.toMap().toSortedMap()
         val days = 256
         for (i in 1 .. days) {

@@ -44,7 +44,7 @@ fun main() {
                 if (point.content.isDigit()) {
                     currentPartNumber = "$currentPartNumber${point.content}"
                     engineSchematic.neighbours(point).forEach { neighbour ->
-                        if ((!neighbour.content.isDigit()) and (!neighbour.content.equals('.'))) {
+                        if ((!neighbour.content.isDigit()) and (neighbour.content != '.')) {
                             currentPartNumberSymbol = neighbour
                         }
                     }

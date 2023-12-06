@@ -3,7 +3,6 @@ package nerok.aoc.aoc2021.day07
 import nerok.aoc.utils.Input
 import kotlin.math.abs
 import kotlin.math.nextDown
-import kotlin.math.roundToInt
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 

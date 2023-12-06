@@ -1,7 +1,6 @@
 package nerok.aoc.aoc2021.day09
 
 import nerok.aoc.utils.Input
-import java.io.File
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 
@@ -136,7 +135,7 @@ fun main() {
     }
 
     fun part1(input: List<String>): Long {
-        var coordinates = mutableListOf<List<Int>>()
+        val coordinates = mutableListOf<List<Int>>()
         input.mapIndexed { index, line ->
             line.split("")
                 .filterNot { it == "" }
@@ -147,7 +146,7 @@ fun main() {
     }
 
     fun part2(input: List<String>): Long {
-        var coordinates = mutableListOf<List<Int>>()
+        val coordinates = mutableListOf<List<Int>>()
         input.mapIndexed { index, line ->
             line.split("")
                 .filterNot { it == "" }

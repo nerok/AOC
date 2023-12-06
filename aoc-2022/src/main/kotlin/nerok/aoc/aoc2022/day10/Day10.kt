@@ -1,6 +1,6 @@
 package nerok.aoc.aoc2022.day10
 import nerok.aoc.utils.Input
-import java.util.Collections
+import java.util.*
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 

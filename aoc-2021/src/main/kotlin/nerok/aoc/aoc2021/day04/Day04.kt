@@ -1,7 +1,6 @@
 package nerok.aoc.aoc2021.day04
 
 import nerok.aoc.utils.Input
-import java.io.File
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 

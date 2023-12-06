@@ -1,14 +1,13 @@
 package nerok.aoc.aoc2021.day05
 
 import nerok.aoc.utils.Input
-import java.io.File
 import kotlin.math.abs
 import kotlin.time.DurationUnit
 import kotlin.time.measureTime
 
 fun main() {
     fun part1(input: List<String>): Long {
-        var coordinates = mutableListOf<List<Pair<Int, Int>>>()
+        val coordinates = mutableListOf<List<Pair<Int, Int>>>()
         var size = 0
         input.forEach { fileLine ->
             fileLine
@@ -42,7 +41,7 @@ fun main() {
                 }.let { coordinates.add(it) }
 
         }
-        var area = Array(size+1) { IntArray(size+1) { 0 } }
+        val area = Array(size+1) { IntArray(size+1) { 0 } }
         coordinates.flatten().forEach {
             area[it.second][it.first] = area[it.second][it.first] + 1
         }
@@ -52,7 +51,7 @@ fun main() {
     }
 
     fun part2(input: List<String>): Long {
-        var coordinates = mutableListOf<List<Pair<Int, Int>>>()
+        val coordinates = mutableListOf<List<Pair<Int, Int>>>()
         var size = 0
         input.forEach { fileLine ->
             fileLine
@@ -107,7 +106,7 @@ fun main() {
                 }.let { coordinates.add(it) }
 
         }
-        var area = Array(size+1) { IntArray(size+1) { 0 } }
+        val area = Array(size+1) { IntArray(size+1) { 0 } }
         coordinates.flatten().forEach {
             area[it.second][it.first] = area[it.second][it.first] + 1
         }
